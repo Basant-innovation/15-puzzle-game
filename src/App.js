@@ -6,16 +6,30 @@ import shuffleArray from "./util/shuffleArray";
 import swap from "./util/swap";
 
 const App = () => {
-  const [tiles, setTiles] = useState(
-    shuffleArray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
-  );
-  // const tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  const [tiles, setTiles] = useState([
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    0,
+    15,
+  ]);
 
-  // shuffleArray(tiles);
-
+  //shuffleArray([1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
   const handleClick = (t, i) => {
-    //alert("click" + t + " " + i);
-
+    if (checkWinner()) {
+      return;
+    }
     if (tiles[i + 1] === 0 && i % 4 !== 3) {
       //swap i , i+1
       console.log("right");
@@ -34,12 +48,24 @@ const App = () => {
       setTiles(swap(i, i + 4, tiles));
     }
   };
+
+  const checkWinner = () => {
+    const winTiles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0];
+
+    if (JSON.stringify(tiles) === JSON.stringify(winTiles)) {
+      return true;
+    }
+    return null;
+  };
+
   const listTiles = tiles.map((tile, index) => (
     <Tile value={tile} clickTile={() => handleClick(tile, index)} />
   ));
+  const result = checkWinner();
   return (
     <div className="App">
       <div className="Board">{listTiles}</div>
+      <div className="Result">{result ? "you win" : "try"}</div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Tile = ({ value, clickTile }) => {
 
   return (
     <>
-      {value != 0 ? (
+      {value !== 0 ? (
         <div className="Tile" onClick={clickTile}>
           {value}
         </div>
