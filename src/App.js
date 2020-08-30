@@ -6,26 +6,10 @@ import shuffleArray from "./util/shuffleArray";
 import swap from "./util/swap";
 
 const App = () => {
-  const [tiles, setTiles] = useState([
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    0,
-    15,
-  ]);
+  const [tiles, setTiles] = useState(
+    shuffleArray([1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+  );
 
-  //shuffleArray([1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
   const handleClick = (t, i) => {
     if (checkWinner()) {
       return;
